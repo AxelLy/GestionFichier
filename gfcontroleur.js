@@ -31,7 +31,7 @@ function recupereContenuDossier() {
         return files_;
     }
 
-    clog(getFiles(lechemin));
+    clog(getFiles(lechemi));
 
 
 
