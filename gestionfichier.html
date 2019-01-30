@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <script>
+                var fso = new ActiveXObject("Scripting.FileSystemObject"); 
+    var d = fso.GetFolder("C:/Users/axell/OneDrive/Documents/BTSSIO/2NDEANNEE/STAGE2019/2801GestionDeFichiers/Un"); 
+    var fc = new Enumerator(d.Files); 
+    var str = ""; 
+    for (; ! fc.atEnd() ; fc.moveNext()) 
+    { 
+    str += fc.item().Name; 
+    }; 
+    console.log(JSON.stringify(str));
+    console.log("salut");
+    </script>
+    </body>
+</html>
