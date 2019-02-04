@@ -5,17 +5,21 @@ var vm = require('vm');
 var express = require('express');
 var app = express();
 var controleur = require("./gfcontroleur");
+var clog = console.log;
+
+var leresult = controleur.Controller.gestiondossiers();
+clog(leresult);
 
 
 
-
-var myObjJson = controleur.Controller.gestiondossiers();
-app.get('/accueil', function (req, res) {
-  res.send("wsh")
+app.get('/', function (req, res) {
+  res.send(leresult[0]);
+  
 })
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+app.listen(5000, function () {
+  console.log('Example app listening on port 5000!')
 })
+
 // Crée un serveur HTTP qui écoute les requêtes sur le port 8000
 http.createServer(function(request, response) {
  

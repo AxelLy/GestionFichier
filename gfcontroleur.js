@@ -5,18 +5,13 @@ var Controller =
 {
     gestiondossiers: function ()
     {
-        //ouvrir et écrire dans un fichier   
-        recupereContenuDossier();      
+        
+        clog= console.log;
+        var lechemin = 'C:/Users/axell/OneDrive/Documents/BTSSIO/2NDEANNEE/STAGE2019/2801GestionDeFichiers/GestionFichier/Dossier/';
+        var result = getFiles(lechemin);   
+        return result;
     }
 }
-
-function recupereContenuDossier() {
-    clog= console.log;
-    var lechemin = 'C:/Users/axell/OneDrive/Documents/BTSSIO/2NDEANNEE/STAGE2019/2801GestionDeFichiers/GestionFichier/Dossier/';
-    var result = getFiles(lechemin);
-    clog(result);   
-}
-
 
 function getFiles (dir, result, dossier){
     var result = [];
