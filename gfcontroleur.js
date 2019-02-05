@@ -13,9 +13,10 @@ var Controller =
 }
 
 function getFiles (dir, result, dossier, laliste){
-    var laliste = laliste || [];
+    var laliste = laliste || ["<ul>"];
     var result = [];
     var files = fs.readdirSync(dir);
+
     for (var i in files)
     {   
         var chemin = dir + '/' + files[i];  
@@ -24,12 +25,13 @@ function getFiles (dir, result, dossier, laliste){
             result.push(files[i]);
         }
         else if(fs.statSync(chemin).isDirectory()){  
-            laliste.push("<ul><li>"+ files[i]+"")    
+            laliste.push("<li>"+ files[i]+"<ul>")    
             result[files[i]] = getFiles(chemin, result, dossier, laliste);
             laliste.push("</li></ul>")
         }   
       
     }   
+
      
     return laliste;
 }
