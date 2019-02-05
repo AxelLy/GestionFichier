@@ -13,7 +13,12 @@ clog(leresult);
 
 
 app.get('/', function (req, res) {
-  res.send(leresult[0]);
+  var lestring = "";
+  leresult.forEach(function(element) {
+   lestring = lestring + element;
+  });
+  res.send(lestring);
+
   
 })
 app.listen(5000, function () {
