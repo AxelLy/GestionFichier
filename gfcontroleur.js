@@ -14,7 +14,7 @@ var Controller =
     enGraphe: function()
     {
         var lejson; 
-        var result = walkSync(lechemin);
+        var result = grapheFiles(lechemin);
         lejson = JSON.stringify(result);
         lejson = lejson.replace( /\[/g, "{");
         lejson = lejson.replace( /\]/g, "}");
@@ -37,14 +37,14 @@ var walkSync = function(dir, files_) {
   };
 
 function grapheFiles (dir, result, dossier){
-    var result = [];
+    var result = {};
     var files = fs.readdirSync(dir);
 
     for (var i in files)
     {   
         var chemin = dir + '/' + files[i];  
         if (fs.statSync(chemin).isFile()){
-            result.push(files[i]);
+            result[files[i]] = {};
         }
         else if(fs.statSync(chemin).isDirectory()){  
             result[files[i]] = grapheFiles(chemin, result, dossier);

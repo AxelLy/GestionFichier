@@ -8,14 +8,57 @@
       var deux = ['a.txt','b.txt'];
       var un = ["deux","trois"];
       var tab = [un,deux,trois,quatre];
+      var leparent = {un, deux, trois, quatre};
+      leparent = Object.keys(leparent);
+      var clog = console.log;
+
+      clog(leparent)
+
+
+      graphG = {"Un":
+        {
+        "Deux": {
+          "a.txt":{},
+          "b.txt":{}
+        },
+        "Trois":{
+          "d.txt":{},
+          "Quatre":{
+            "c.txt":{}
+          }
+        }
+      }
+    };
+
+    var r = [];
       function drawChart() {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Name');
         data.addColumn('string', 'Manager');
+    
+        affichage(graphG, null);
+
+        
+        function affichage (tab, leparent)
+        {
+          for(var x in tab)
+          {
+            r.push([x, leparent]);
+            clog(r);
+            if (Object.keys(tab[x]).length !== 0){
+              for (e in tab[x]){
+                r.push([e, x]);
+                affichage(tab[x][e],e);
+              }
+            }
+          }
+          data.addRows(r);
+          
+        }
+
 
         // For each orgchart box, provide the name, manager, and tooltip to show.
-      
-      
+
 
         // Create the chart.
         var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));

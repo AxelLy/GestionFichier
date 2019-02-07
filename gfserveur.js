@@ -13,7 +13,10 @@ app.engine('html', require('ejs').renderFile);
 
 
 
-
+app.get('/list-json', (req, res) => {
+  console.log(controleur.Controller.enGraphe());
+  res.json(controleur.Controller.enGraphe());
+});
 app.get('/liste', function (req, res) {
   var leresult = controleur.Controller.enListe();
   clog(leresult);
