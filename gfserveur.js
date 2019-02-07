@@ -6,21 +6,49 @@ var express = require('express');
 var app = express();
 var controleur = require("./gfcontroleur");
 var clog = console.log;
-
-var leresult = controleur.Controller.gestiondossiers();
-clog(leresult);
-
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
 
 
-app.get('/', function (req, res) {
+
+
+
+
+app.get('/liste', function (req, res) {
+  var leresult = controleur.Controller.enListe();
+  clog(leresult);
+  
   var lestring = "";
   leresult.forEach(function(element) {
    lestring = lestring + element;
   });
   res.send(lestring);
-
-  
 })
+
+app.get("/", function(req, res){
+  var leresult = controleur.Controller.enGraphe();
+  clog(leresult);
+  res.render("Test1", { result: leresult });
+});
+
+
+/*app.get('/graphe', function (req, res) {
+
+
+  fs.readFile('./views/Test1.html', null, function (error, data) {
+    if (error) {
+        res.writeHead(404);
+        res.write('Whoops! File not found!');
+    } else {
+        res.write(data);
+    }
+    res.end();
+});
+
+})
+*/
+
+
 app.listen(5000, function () {
   console.log('Example app listening on port 5000!')
 })
