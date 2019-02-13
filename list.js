@@ -1,5 +1,5 @@
-var m = require('mithril')
-
+import m from "mithril"
+var liste = []
 var List = {
     list: [],
     loadList: function(){
@@ -11,9 +11,31 @@ var List = {
         })
         .then(function(result){
             List.list = result
-            console.log(List.list)
         })
         
+    },
+    view: function(){
+        var uneliste = afficheListe(List.list,liste)
+        return m("body",[
+            m("ul",uneliste) 
+        ])
     }
+    
+
 }
-module.exports = List
+function afficheListe(objet){
+    var liste = []
+    var liste2 = []
+    for(var x in objet){
+        if (Object.keys(objet[x]).length == 0){
+            liste.push(m("li",x))
+        }
+        else{
+            liste.push(m("li",x))
+            liste2 = afficheListe(objet[x])
+            liste.push(m("ul",liste2))
+        }
+    }
+    return liste
+} 
+export default List
