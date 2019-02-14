@@ -1,5 +1,4 @@
 import m from "mithril"
-var liste = []
 var List = {
     list: [],
     loadList: function(){
@@ -15,13 +14,10 @@ var List = {
         
     },
     view: function(){
-        var uneliste = afficheListe(List.list,liste)
-        return m("body",[
-            m("ul",uneliste) 
-        ])
+        var uneliste = afficheListe(List.list)
+            return m("div",{id:"liste"},
+            m("ul",uneliste)) 
     }
-    
-
 }
 function afficheListe(objet){
     var liste = []
